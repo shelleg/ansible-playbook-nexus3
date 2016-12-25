@@ -1,0 +1,9 @@
+---
+- hosts: nexus
+  become: yes
+  roles:
+    - role: ansiblebit.oracle-java
+      oracle_java_set_as_default: yes
+    - role: geerlingguy.apache
+      apache_create_vhosts: no
+    - role: nexus
