@@ -1,0 +1,9 @@
+---
+
+- src: ansiblebit.launchpad-ppa-webupd8
+- src: ansiblebit.oracle-java
+- src: geerlingguy.apache
+
+- src: https://github.com/shelleg/ansible-nexus3-oss.git
+  version: dev
+  name: nexus
