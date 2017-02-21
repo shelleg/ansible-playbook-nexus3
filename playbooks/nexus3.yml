@@ -1,9 +1,24 @@
 ---
 - hosts: nexus
   become: yes
+  vars:
+    nexus_backup_dir: /tmp/nexus-backup/
+    nexus_scheduled_tasks:
+      - name: nightly-backup
+        cron: '0 0 22 * * ?'
+        typeId: db.backup
+        taskProperties:
+          location: "{{ nexus_backup_dir }}"
+
   roles:
     - role: ansiblebit.oracle-java
       oracle_java_set_as_default: yes
     - role: geerlingguy.apache
       apache_create_vhosts: no
     - role: nexus
+      nexus_config_pypi: true
+      nexus_config_docker: true
+      nexus_config_raw: true
+      nexus_config_rubygems: true
+      nexus_config_bower: true
+      nexus_config_npm: true

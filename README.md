@@ -33,3 +33,12 @@ password: changeme
 ## Customizing this for your needs
 - See the recommended playbook @->  [here](https://github.com/savoirfairelinux/ansible-nexus3-oss/blob/master/README.md#example-playbook)
 - Comments are awesome feel free to comment on code || open issues etc etc.
+
+
+
+## list
+registry="172.16.1.110:5000"
+repos=`curl http://$registry/v2/_catalog?n=100 | jq '.repositories[]' | tr -d '"'`
+for repo in $repos; do 
+   curl http://$registry/v2/$repo/tags/list; 
+done
